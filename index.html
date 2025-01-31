@@ -5,12 +5,31 @@
 	  /* Fonts */
          @import url('https://fonts.googleapis.com/css?family=Eczar:800|Roboto+Condensed|Tauri|Teko:500|Changa+One|Gelasio|DM+Serif+Text:400i&display=swap'); /* Loads fonts from Google Web Fonts. Add additional @import if you license web fonts from elsewhere (such as from Monotype) */
        
-	   .info_lore {
-			/*display:block;*/
+	   .info_logo {
+			display: inline-block;
 			width: 50px;
 			height: 50px;
 			background-image: url(./style/info_logo.png);
+			
+		}
+		.info_logo.lore{
 			background-position: -8px -1px;
+		}
+		.info_logo.advi{
+			background-position: -8px -60px;
+		}
+		.info_logo.loca{
+			background-position: -8px -117px;
+		}
+		.info_logo.creat{
+			background-position: -8px -176px;
+		}
+		.info_logo.rewa{
+			background-position: -8px -237px;
+		}
+		img.monster{
+			position:absolute;
+			z-index:9999!important;
 		}
 	   
 	   </style> 
@@ -18,12 +37,11 @@
       <link rel="stylesheet" href="./style/style.css" >
    </head>
    <body>
-      <div id="" class="">
-         <div class="row">
-            <div class="col-xs-12">
-               <div id="preview" ng-bind-html="DocumentsShareController.preview" class="ng-binding">
-			   <div class="phb" id="p1"></div>
-			   <div class="phb" id="p2">
+	<div class="col-xs-12">
+		<div id="preview" ng-bind-html="DocumentsShareController.preview" class="ng-binding">
+			<div style="display:none;"class="phb" id="p1"></div>
+			<!-- DOLGRIM -->
+			<div class="phb" id="p2">
                      <section>
 						<section>
 						<div class="wide widepageright"> 
@@ -31,19 +49,28 @@
 						<div class="thinbarright rule">
 						<section id="wide-page-format-some-lorem-ipsum-your-sidebar-2">
 						<br/><br/><br/><br/><br/><br/><br/>
-						<span class="info_lore"></span>
+						<span class="info_logo lore"></span>
 						<h3 id="wide-page-format-some-lorem-ipsum-your-sidebar-2">Byeshk</h3>
 						<p>Mined in the Byeshk and Graywall
-Mountains bordering Droaam, this rare metal is
-prized by smiths for use in jewelry and weapons. It
-has a lustrous purple sheen and is hard and dense.</p>
-<br/><br/><br/><br/><br/><br/><br/>
+							Mountains bordering Droaam, this rare metal is
+							prized by smiths for use in jewelry and weapons. It
+							has a lustrous purple sheen and is hard and dense. 
+							Members of the Gatekeepers seeks actively byeshk weapons whom are
+							particulary effective against most of the creatures and creations of Xoriat.
+						</p>
+						<br/><br/><br/><br/><br/><br/><br/>
+						<span class="info_logo creat"></span>
 						<h3 id="wide-page-format-some-lorem-ipsum-your-sidebar-2">Dyrrn the Corruptor</h3>
 						<p> While some daelkyr 
-						lords created aberrations like beholders and aboleths, Dyrrn the Corruptor used his enemies as his canvas. Dyrrn took the bodies of the 
-						goblins, and molded them into the first dolgrim. 
+							lords created aberrations like beholders and aboleths, Dyrrn the Corruptor used his enemies as his canvas. Dyrrn took the bodies of the 
+							goblins, and molded them into the first dolgrim. 
 						</p>
+						<p>
 						
+							<img style="left:-2px;" class="monster" src="https://5e.tools/img/bestiary/ERLW/Dolgrim.webp" width="420" />
+							
+							
+                           </p>
 						</section>
 						</div>
 						</section>
@@ -83,21 +110,7 @@ has a lustrous purple sheen and is hard and dense.</p>
 							thus ensuring the coordination needed to control multiple sets of weapons. 
 							In fact, most warrior will enter combat wielding a melee weapon, a crossbow, and a shield.</p>
 							<br/>
-						
-						</section>
-						</div></section></div>
-						</section>
-					</section>
-					 <section id="chapter-title-example-creature">
-						
-                        <section id="chapter-title-example-creature-creature-name">
-                           
-							  <p><br/>
-							<img src="https://5e.tools/img/bestiary/ERLW/Dolgrim.webp" width="320" />
-							
-							
-                           </p><br/>
-						   <section id="chapter-title-example-creature-creature-name-creature-name-creature-1">
+						<section id="chapter-title-example-creature-creature-name-creature-name-creature-1">
                               <h4 id="chapter-title-example-creature-creature-name-creature-name-creature-1">
                                  Dolgrim warrior 
                                  <div class="label">CREATURE 3</div>
@@ -132,19 +145,19 @@ has a lustrous purple sheen and is hard and dense.</p>
                                     </div>
                                  </div>
                                  <div class="reqbox">
-                                    <div>
+                                    <div  style="margin-left:30px;">
                                        <span class="rule ac">18 (20 with shield raised)</span>
                                        <span class="rule fort">+8</span>
                                        <span class="rule ref">+7</span>
                                        <span class="rule will">+6</span>
 									    ; +2 status to all saves vs. mental effects
                                     </div>
-                                    <div>
+                                    <div style="margin-left:60px;">
                                        <span class="rule hp">45</span>
                                        <span class="rule weaknesses">byeshk 5</span>
                                        <span class="rule resistances">mental 5</span>
                                     </div>
-									<div class="rule">
+									<div  style="margin-left:100px;" class="rule">
                                        <span class="abilityname">Shield Block</span> 
                                        <span class="rule">
 											<img class="reaction" src="https://www.gmbinder.com/images/2Pgs0fh.png">
@@ -152,48 +165,166 @@ has a lustrous purple sheen and is hard and dense.</p>
                                     </div>
                                  </div>
                                  <div class="reqbox">
-                                    <div>
+                                    <div style="margin-left:140px;">
                                        <span class="rule speed">20 feet, climb 10 feet</span>
                                     </div>
-									 <div>
+									 <div style="margin-left:145px;">
                                        <span class="rule ranged"><img class="oneaction" src="https://www.gmbinder.com/images/kYpGH7O.png"> hand crossbow +8 (range increment 60 feet, reload 1)</span>
                                        <span class="rule damage">1d6 piercing</span>
                                     </div>
-                                    <div>
+                                    <div style="margin-left:145px;">
                                        <span class="rule melee"><img class="oneaction" src="https://www.gmbinder.com/images/kYpGH7O.png">  morningstar +9 (versatile P), </span>
                                        <span class="rule damage"> 1d6+3 bludgeoning</span>
                                     </div>
-                                   <div>
+                                   <div style="margin-left:150px;">
                                        <span class="rule melee"><img class="oneaction" src="https://www.gmbinder.com/images/kYpGH7O.png">  shield spikes +9, </span>
                                        <span class="rule damage"> 1d6+3 piercing</span>
                                     </div> 
-                                    <div class="rule">
+                                    <div class="rule" style="margin-left:145px;">
                                        <span class="abilityname">Dual consciousness </span> 
                                        <span class="rule">A dolgrim has two brains coordinating its attacks. Therefore, any strike made with a multiple attack penalty gains a +5 circumstance bonus</span>
                                     </div>
                                  </div>
                               </section>
                            </section>
-						   <b<section>
-<div class="smallsidebar">
-<section id="tables-and-sidebars-sidebars-small-sepia-sidebar">
-<h5 id="tables-and-sidebars-sidebars-small-sepia-sidebar">Byeshk</h5>
-
-<p><br>Mined in the Byeshk and Graywall
-Mountains bordering Droaam, this rare metal is
-prized by smiths for use in jewelry and weapons. It
-has a lustrous purple sheen and is hard and dense.</p>
-<p>Mined in the Byeshk and Graywall<br><br>
-</p>
-
-</section>
-</div>
-</section>
-							
 						</section>
-                     </section>
-                  </div>  
-         
+						</div>
+					</section>
+				</div>
+			</section>
+		</section>
+		</div>
+		<!-- DOLGRIM -->
+		<!-- DOLGAUNT -->
+		<div class="phb" id="p3">
+        <section>
+			<section>
+						<div class="wide widepage"> 
+						
+						<section>
+						<div class="widebar">
+						<section id="wide-page-format-some-lorem-ipsum-2">
+                        <h3 id="chapter-title-example-creature">Dolgrim</h3>
+						<p>The dolgrims were the foot soldiers during the Daelkyr War against the 
+						Dhakaani Empire.
+						
+						<br/>
+						<section id="chapter-title-example-creature-creature-name-creature-name-creature-1">
+                              <h4 id="chapter-title-example-creature-creature-name-creature-name-creature-1">
+                                 Dolgrim warrior 
+                                 <div class="label">CREATURE 3</div>
+                              </h4>
+                              <section>
+                                 <div class="taglist">
+                                    <div class="tag uncommon">UNCOMMON</div>
+                                    <div class="tag size">SMALL</div>
+									<div class="tag">Aberration</div>
+                                    <div class="tag">DAELKYR</div>
+                                 </div>
+                                 <div class="reqbox">
+                                    <div>
+                                       <span class="rule perception">+8; darkvision</span>
+                                    </div>
+                                    <div>
+                                       <span class="rule languages">Daelkyr, Goblin, Common(somewhat)</span>
+                                    </div>
+                                    <div>
+                                       <span class="rule skills">Acrobatics +7, Athletics +9, Intimidation +5, Stealth +8</span>
+                                    </div>
+                                    <div>
+                                       <span class="rule str">+3</span>
+                                       <span class="rule dex">+2</span>
+                                       <span class="rule con">+2</span>
+                                       <span class="rule int">-1</span>
+                                       <span class="rule wis">0</span>
+                                       <span class="rule cha">-1</span>
+                                    </div>
+									<div>
+                                       <span class="rule items">hand crossbow, bolts (10), morningstar, wooden spiked shield (Hardness 3, HP 12, BT 6)</span>
+                                    </div>
+                                 </div>
+                                 <div class="reqbox">
+                                    <div  style="margin-left:30px;">
+                                       <span class="rule ac">18 (20 with shield raised)</span>
+                                       <span class="rule fort">+8</span>
+                                       <span class="rule ref">+7</span>
+                                       <span class="rule will">+6</span>
+									    ; +2 status to all saves vs. mental effects
+                                    </div>
+                                    <div style="margin-left:60px;">
+                                       <span class="rule hp">45</span>
+                                       <span class="rule weaknesses">byeshk 5</span>
+                                       <span class="rule resistances">mental 5</span>
+                                    </div>
+									<div  style="margin-left:100px;" class="rule">
+                                       <span class="abilityname">Shield Block</span> 
+                                       <span class="rule">
+											<img class="reaction" src="https://www.gmbinder.com/images/2Pgs0fh.png">
+											 (page 360) The dolgrim snaps its shield into place to deflect a blow. The shield prevents the dolgrim from taking an amount of damage up to the shield’s Hardness. The dolgrim and the shield each take any remaining damage, possibly breaking or destroying the shield.</span>
+                                    </div>
+                                 </div>
+                                 <div class="reqbox">
+                                    <div style="margin-left:140px;">
+                                       <span class="rule speed">20 feet, climb 10 feet</span>
+                                    </div>
+									 <div style="margin-left:145px;">
+                                       <span class="rule ranged"><img class="oneaction" src="https://www.gmbinder.com/images/kYpGH7O.png"> hand crossbow +8 (range increment 60 feet, reload 1)</span>
+                                       <span class="rule damage">1d6 piercing</span>
+                                    </div>
+                                    <div style="margin-left:145px;">
+                                       <span class="rule melee"><img class="oneaction" src="https://www.gmbinder.com/images/kYpGH7O.png">  morningstar +9 (versatile P), </span>
+                                       <span class="rule damage"> 1d6+3 bludgeoning</span>
+                                    </div>
+                                   <div style="margin-left:150px;">
+                                       <span class="rule melee"><img class="oneaction" src="https://www.gmbinder.com/images/kYpGH7O.png">  shield spikes +9, </span>
+                                       <span class="rule damage"> 1d6+3 piercing</span>
+                                    </div> 
+                                    <div class="rule" style="margin-left:145px;">
+                                       <span class="abilityname">Dual consciousness </span> 
+                                       <span class="rule">A dolgrim has two brains coordinating its attacks. Therefore, any strike made with a multiple attack penalty gains a +5 circumstance bonus</span>
+                                    </div>
+                                 </div>
+                              </section>
+                           </section>
+						</section>
+						</div>
+					</section>
+				
+				<section>
+						<div class="thinbar rule">
+						<section id="wide-page-format-some-lorem-ipsum-your-sidebar-2">
+						<br/><br/><br/><br/><br/><br/><br/>
+						<span class="info_logo lore"></span>
+						<h3 id="wide-page-format-some-lorem-ipsum-your-sidebar-2">Byeshk</h3>
+						<p>Mined in the Byeshk and Graywall
+							Mountains bordering Droaam, this rare metal is
+							prized by smiths for use in jewelry and weapons. It
+							has a lustrous purple sheen and is hard and dense. 
+							Members of the Gatekeepers seeks actively byeshk weapons whom are
+							particulary effective against most of the creatures and creations of Xoriat.
+						</p>
+						<br/><br/><br/><br/><br/><br/><br/>
+						<span class="info_logo creat"></span>
+						<h3 id="wide-page-format-some-lorem-ipsum-your-sidebar-2">Dyrrn the Corruptor</h3>
+						<p> While some daelkyr 
+							lords created aberrations like beholders and aboleths, Dyrrn the Corruptor used his enemies as his canvas. Dyrrn took the bodies of the 
+							goblins, and molded them into the first dolgrim. 
+						</p>
+						<p>
+						
+							<img style="left:-2px;" class="monster" src="https://5e.tools/img/bestiary/ERLW/Dolgrim.webp" width="420" />
+							
+							
+                           </p>
+						</section>
+						</div>
+						</section>
+				</div>
+			</section>
+		</section>
+		</div>
+		<!-- DOLGAUNT -->
+		 
 		 </div>
       </div>
    </body>

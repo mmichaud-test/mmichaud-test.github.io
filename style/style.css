@@ -447,8 +447,9 @@
          .widebar { }
          .thinbar { color:#5E0004; font-size: 0.9em; margin-top:0px; margin-left:10px; padding-left:10px; margin-right:65px; border-left: 1px solid #5E0004; }
          .widebarright { margin-left:-50px; margin-right:60px; }
-         .thinbarright { color:#5E0004; font-size: 0.9em; margin-top:0px; margin-right:10px; padding-right:10px; margin-right:65px; border-right: 1px solid #5E0004; }
-         .thinbar h3, .thinbarright h3 { font-size:2em;font-weight: normal; } /* Sidebars use a smaller heading 3, so bold weight needs to be removed */
+         .thinbarright { text-align:right;color:#5E0004; font-size: 0.9em; margin-top:0px; margin-right:10px; padding-right:10px; margin-right:65px; border-right: 1px solid #5E0004; }
+         .thinbarright p {text-align:right; }
+		 .thinbar h3, .thinbarright h3 { font-size:2em;font-weight: normal; } /* Sidebars use a smaller heading 3, so bold weight needs to be removed */
          .thinbar p, .thinbar p+p, .thinbar ul, .thinbar ol { font-family: 'Roboto Condensed', sans-serif;  }
          /* table of contents */
          .toc { padding-left:40px;padding-right:45px; margin-left:-37px; }
