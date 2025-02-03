@@ -261,7 +261,8 @@
          /* Boxed Containers */
          .box {border-bottom:1px solid #000000; hyphens: manual; hyphens: auto; word-break: break-word; } /* Normal boxes just put a separator line at the bottom */
          .reqbox {border-bottom:1px solid #000000;padding-left: 1.5em;text-indent:-1.5em; hyphens: manual; overflow-wrap: break-word; overflow: hidden; } /* Boxes for requirements and prerequisites require the Pathfinder signature identation */ 
-         .tab {text-indent:1.5em;  }
+         .reqbox.last {border-bottom:0px solid #000000;padding-left: 1.5em;text-indent:-1.5em; hyphens: manual; overflow-wrap: break-word; overflow: hidden; } /* Boxes for requirements and prerequisites require the Pathfinder signature identation */ 
+		 .tab {text-indent:1.5em;  }
          /* Labels for Feats and Actions */
          .prereq:before { content: "Prerequisites "; font-weight: bold; }
          .req:before { content: "Requirements "; font-weight: bold; }
