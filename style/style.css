@@ -415,7 +415,7 @@
          .thrown:before { content: "thrown "; font-weight: bold; }
          .criticalspecialization:before { content: "Critical Specialization "; font-weight: bold; }
          /* Sidebar */
-         .smallsidebar { background-image: url("https://pf2.easytool.es/sheets/boxBorder2.png"); background-size: 350px; background-repeat:no-repeat; margin-left:-1em; margin-right:-3em; padding-left:2.6em; padding-right:3em; padding-top:2.5em; display:inline-block; padding-bottom:40px; }
+         .smallsidebar { background-image: url(""); background-size: 350px; background-repeat:no-repeat; margin-left:-1em; margin-right:-3em; padding-left:2.6em; padding-right:3em; padding-top:2.5em; display:inline-block; padding-bottom:40px; }
          .smallsidebar h5 { text-align:center; padding-bottom:10px; text-transform:uppercase; }
          .smallsidebar p, .smallsidebar p+p { background-color: #DBD1BC; font-family: 'Roboto Condensed', sans-serif; margin-left:-10px; padding-left:13px; margin-right:-8px; padding-right:12px; width:309px; margin-top:-11px; }
          /* Dual Sidebar */
