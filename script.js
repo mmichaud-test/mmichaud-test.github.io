@@ -19,6 +19,7 @@ function setMenu() {
   var ulSym = document.getElementById("menuSym");
   var ulAnc = document.getElementById("menuAnc");
   var ulMon = document.getElementById("menuMon");
+  var ulDra = document.getElementById("menuDra");
   var currentUrl = window.location.pathname;
   
   switch (currentUrl) {
@@ -32,6 +33,9 @@ function setMenu() {
       break;
     case "/index.html":
       ulSym.style.display = "block";
+      break;
+	case "/index_dragonmark.html":
+      ulDra.style.display = "block";
       break;
     default:
       // Le menu reste visible
