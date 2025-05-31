@@ -27,8 +27,12 @@ function setMenu() {
     case "/index_ancestries.html":
       ulAnc.style.display = "block";
       break;
-    
-    
+    case "/index_monster.html":
+      ulMon.style.display = "block";
+      break;
+    case "/index.html":
+      ulSym.style.display = "block";
+      break;
     default:
       // Le menu reste visible
       break;
