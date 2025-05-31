@@ -16,11 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function setMenu() {
-  const ulSym = document.getElementById("menuSym");
-  const ulAnc = document.getElementById("menuAnc");
-  const ulMon = document.getElementById("menuMon");
-  const currentUrl = window.location.pathname;
-  console.log(ulAnc);
+  var ulSym = document.getElementById("menuSym");
+  var ulAnc = document.getElementById("menuAnc");
+  var ulMon = document.getElementById("menuMon");
+  var currentUrl = window.location.pathname;
+  console.log(currentUrl);
   switch (currentUrl) {
     case "/contact":
     case "/login":
