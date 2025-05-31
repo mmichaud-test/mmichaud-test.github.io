@@ -8,13 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .then(html => {
       document.getElementById('menu').innerHTML = html;
+	  setMenu();
     })
     .catch(error => {
       console.error('Erreur lors du chargement du menu :', error);
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+function setMenu() {
   const ulSym = document.getElementById("menuSym");
   const ulAnc = document.getElementById("menuAnc");
   const ulMon = document.getElementById("menuMon");
@@ -32,4 +33,4 @@ document.addEventListener("DOMContentLoaded", function () {
       // Le menu reste visible
       break;
   }
-});
+}
