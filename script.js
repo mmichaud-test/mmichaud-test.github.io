@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const ulAnc = document.getElementById("menuAnc");
   const ulMon = document.getElementById("menuMon");
   const currentUrl = window.location.pathname;
-
+  
   switch (currentUrl) {
     case "/contact":
     case "/login":
-    case "/index_ancestries":
+    case "/index_ancestries.html":
       ulAnc.style.display = "block";
       break;
     
