@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return response.text();
     })
     .then(html => {
-      document.getElementById('menu').innerHTML = html;
+      document.getElementById('p2').innerHTML = html;
 	  setMenu();
     })
     .catch(error => {
@@ -20,7 +20,7 @@ function setMenu() {
   var ulAnc = document.getElementById("menuAnc");
   var ulMon = document.getElementById("menuMon");
   var currentUrl = window.location.pathname;
-  console.log(currentUrl);
+  
   switch (currentUrl) {
     case "/contact":
     case "/login":
