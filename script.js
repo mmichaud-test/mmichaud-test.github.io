@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const ulAnc = document.getElementById("menuAnc");
   const ulMon = document.getElementById("menuMon");
   const currentUrl = window.location.pathname;
-  
+  console.log(ulAnc);
   switch (currentUrl) {
     case "/contact":
     case "/login":
