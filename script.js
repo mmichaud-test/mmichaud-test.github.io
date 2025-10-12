@@ -18,8 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
 function setMenu() {
   var ulSym = document.getElementById("menuSym");
   var ulAnc = document.getElementById("menuAnc");
+  var ulMat = document.getElementById("menuMat");
   var ulMon = document.getElementById("menuMon");
   var ulDra = document.getElementById("menuDra");
+  
   var currentUrl = window.location.pathname;
   
   switch (currentUrl) {
@@ -27,6 +29,9 @@ function setMenu() {
     case "/login":
     case "/index_ancestries.html":
       ulAnc.style.display = "block";
+      break;
+	case "/index_material.html":
+      ulMat.style.display = "block";
       break;
     case "/index_monster.html":
       ulMon.style.display = "block";
