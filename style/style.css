@@ -385,6 +385,7 @@
          .reset:before { content: "Reset "; font-weight: bold; }
          /* Labels for Items */
          .price:before { content: "Price "; font-weight: bold; }
+         .price:after { content: "; ";  }
          .usage:before { content: "Usage "; font-weight: bold; }
          .usage:after { content: "; ";  }
          .bulk:before { content: "Bulk "; font-weight: bold; }
@@ -504,4 +505,7 @@
          .phb { background-image: url('https://www.gmbinder.com/images/REmFBe1.png'), url('https://www.gmbinder.com/images/EABESdy.png'); } 
          .phb:nth-child(odd) { background-image: url('https://www.gmbinder.com/images/IQwl0gO.png'), url('https://www.gmbinder.com/images/EABESdy.png'); }
          .amiri { opacity: 0.0; }
+		 .item_table tr td:first-child { padding-left: 5px;}
+		 .item_table thead tr th:first-child { padding-left: 5px;}
+		 .item_table tr.tablefooter td{ font-weight: bold; !important}
       </style>
