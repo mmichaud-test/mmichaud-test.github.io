@@ -266,6 +266,7 @@
          /* Labels for Feats and Actions */
          .prereq:before { content: "Prerequisites "; font-weight: bold; }
          .req:before { content: "Requirements "; font-weight: bold; }
+         .freq:before { content: "Frequency "; font-weight: bold; }
          .name { font-style:italic; }
          .name:before { content: "Name "; font-weight: bold; font-style:normal; }
          .name:after { content: "; "; }
