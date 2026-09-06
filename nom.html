@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Générateur de noms — Eberron</title>
+
+<style>
+    :root {
+        --bg: #171717;
+        --panel: #242424;
+        --panel2: #2d2d2d;
+        --text: #eeeeee;
+        --muted: #aaaaaa;
+        --border: #444444;
+        --accent: #d6a84f;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container {
+        max-width: 760px;
+        margin: 40px auto;
+        padding: 24px;
+    }
+
+    h1 {
+        margin: 0 0 8px;
+        text-align: center;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: var(--muted);
+        margin-bottom: 28px;
+    }
+
+    .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 22px;
+        margin-bottom: 18px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .field {
+        margin-bottom: 2px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+
+    select,
+    button {
+        width: 100%;
+        padding: 11px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        font-size: 15px;
+    }
+
+    select {
+        background: var(--panel2);
+        color: var(--text);
+    }
+
+    .options {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+    }
+
+    .check {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--text);
+        font-weight: normal;
+    }
+
+    .check input {
+        width: auto;
+    }
+
+    .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 22px;
+    }
+
+    button {
+        cursor: pointer;
+        background: var(--panel2);
+        color: var(--text);
+    }
+
+    button.primary {
+        background: var(--accent);
+        color: #111;
+        border-color: var(--accent);
+        font-weight: bold;
+    }
+
+    button:hover {
+        filter: brightness(1.08);
+    }
+
+    .result {
+        text-align: center;
+        min-height: 130px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #nom {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    #details {
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    .note {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+        margin-top: 18px;
+    }
+
+    @media (max-width: 600px) {
+        .grid,
+        .actions {
+            grid-template-columns: 1fr;
+        }
+
+        .container {
+            margin: 15px auto;
+            padding: 14px;
+        }
+
+        #nom {
+            font-size: 28px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Noms</h1>
+
+    <div class="subtitle">
+        
+    </div>
+
+    <div class="panel">
+
+        <div class="grid">
+
+            <div class="field">
+                <label for="race">Race</label>
+
+                <select id="race">
+                    <option value="humain">Humain</option>
+                    <option value="elfe">Elfe</option>
+                    <option value="demielfe">Demi-elfe</option>
+                    <option value="nain">Nain</option>
+                    <option value="demiorque">Demi-orque</option>
+                </select>
+            </div>
+
+
+            <div class="field">
+
+                <label for="sexe">Sexe</label>
+
+                <select id="sexe">
+                    <option value="masculin">Masculin</option>
+                    <option value="feminin">Féminin</option>
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="provenance">
+                    Provenance / culture
+                </label>
+
+                <select id="provenance"></select>
+
+            </div>
+
+        </div>
+
+
+        <!-- OPTIONS HUMAINES -->
+
+        <div id="optionsHumain" class="options">
+
+            <label class="check">
+
+                <input
+                    type="checkbox"
+                    id="noble"
+                >
+
+                Noble / famille titrée (ir’)
+
+            </label>
+
+
+            <label class="check">
+
+                <input
+                    type="checkbox"
+                    id="maison"
+                >
+
+                Membre d'une maison draconique (d’)
+
+            </label>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button
+                class="primary"
+                onclick="genererNom()"
+            >
+                Générer un nom
+            </button>
+
+
+            <button
+                onclick="copierNom()"
+            >
+                Copier le nom
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESULTAT -->
+
+    <div class="panel result">
+
+        <div id="nom">
+            —
+        </div>
+
+        <div id="details">
+            Sélectionnez les caractéristiques du personnage.
+        </div>
+
+    </div>
+
+
+    <div class="panel note">
+
+        <strong>Convention :</strong>
+
+        les préfixes <em>ir’</em> et <em>d’</em> sont appliqués
+        comme éléments du nom de famille.
+
+        Pour les elfes, la provenance influence la culture
+        de nommage plutôt que de forcer un prénom humain.
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ============================================================
+   NOMS HUMAINS
+   ============================================================ */
+
+const humains = {
+
+    aundair: {
+
+        masculin: [
+            "Ari",
+            "Bokk",
+            "Breyten",
+            "Daen",
+            "Dover",
+            "Erben",
+            "Fluin",
+            "Gavrin",
+            "Hagro",
+            "Herschem",
+            "Huys",
+            "Jurian",
+            "Kamiel",
+            "Killian",
+            "Kleris",
+            "Reng",
+            "Retief",
+            "Riaan",
+            "Saal",
+            "Sarelo",
+            "Sithov",
+            "Tak",
+            "Tyman",
+            "Urik"
+        ],
+
+        feminin: [
+            "Aafki",
+            "Agate",
+            "Baltia",
+            "Batrax",
+            "Beleth",
+            "Chantal",
+            "Fientia",
+            "Flerentia",
+            "Gwen",
+            "Hjeltia",
+            "Juliona",
+            "Levini",
+            "Margana",
+            "Marloes",
+            "Sanne",
+            "Sien",
+            "Tanneken",
+            "Vilina"
+        ],
+
+        noms: [
+            "Aarland",
+            "Acker",
+            "Adriansen",
+            "Alyea",
+            "Arendt",
+            "Bacher",
+            "Banekert",
+            "Bartell",
+            "Bateu",
+            "Crudaker",
+            "Caldamus",
+            "Corleis",
+            "Dekker",
+            "Ennes",
+            "Gerlach",
+            "Haldron",
+            "Hugrin",
+            "Jurians",
+            "Karch",
+            "Kendig",
+            "Maartel",
+            "Mantanye",
+            "Merchiot",
+            "Nagel",
+            "Ostren",
+            "Petilom",
+            "Redeker",
+            "Rhuli",
+            "Romhaar",
+            "Serontain",
+            "Shreve",
+            "Sykes",
+            "Taumen",
+            "Thiel",
+            "Toriun",
+            "Tullier",
+            "Valleau",
+            "Veseur",
+            "Yanger",
+            "Zenden"
+        ]
+    },
+
+
+    breland: {
+
+        masculin: [
+            "Alain",
+            "Beren",
+            "Cord",
+            "Curlot",
+            "Destir",
+            "Duran",
+            "Erix",
+            "Jovi",
+            "Kaine",
+            "Kuven",
+            "Laren",
+            "Lis",
+            "Maal",
+            "Minyu",
+            "Nelt",
+            "Norn",
+            "Oarsen",
+            "Pater",
+            "Pol",
+            "Rand",
+            "Reesir",
+            "Saal",
+            "Stend",
+            "Tars",
+            "Teesen",
+            "Uthar",
+            "Verden",
+            "Vorj",
+            "Werem",
+            "Wrogarr",
+            "Yelfis"
+        ],
+
+        feminin: [
+            "Aanna",
+            "Alike",
+            "Beaf",
+            "Channa",
+            "Dabren",
+            "Delru",
+            "Elazti",
+            "Fromm",
+            "Gersi",
+            "Glenas",
+            "Habra",
+            "Heeson",
+            "Isti",
+            "Itlani",
+            "Joherra",
+            "Ket",
+            "Khaal",
+            "Lorsanna",
+            "Margu",
+            "Maril",
+            "Monesti",
+            "Narcy",
+            "Nebra",
+            "Penti",
+            "Riki",
+            "Soranda",
+            "Tabin",
+            "Tolri",
+            "Wroaan",
+            "Wroenna"
+        ],
+
+        noms: [
+            "Aggan",
+            "Bakker",
+            "Colworn",
+            "Devir",
+            "Ebinor",
+            "Faldren",
+            "Graccen",
+            "Helmworth",
+            "Jonz",
+            "Kemble",
+            "Lanner",
+            "Lonn",
+            "Makker",
+            "Morrus",
+            "Nelview",
+            "Perryn",
+            "Riston",
+            "Roole",
+            "Smyth",
+            "Snarik",
+            "Thorn",
+            "Toppe",
+            "Wrighten"
+        ]
+    },
+
+
+    karrnath: {
+
+        masculin: [
+            "Adalstan",
+            "Alarich",
+            "Arend",
+            "Berend",
+            "Brenius",
+            "Detlev",
+            "Drago",
+            "Evetius",
+            "Falko",
+            "Fraedus",
+            "Garrick",
+            "Geroldt",
+            "Gertan",
+            "Gustavus",
+            "Halden",
+            "Leonus",
+            "Leodegar",
+            "Maenrad",
+            "Rochus",
+            "Rolund",
+            "Sigor",
+            "Theoban",
+            "Vedim",
+            "Vorik",
+            "Wultram"
+        ],
+
+        feminin: [
+            "Adalgisa",
+            "Alinda",
+            "Asta",
+            "Bauin",
+            "Clotrila",
+            "Demuth",
+            "Ebba",
+            "Ermena",
+            "Forsindh",
+            "Gisaul",
+            "Harika",
+            "Haedrun",
+            "Karola",
+            "Lorelea",
+            "Mauriana",
+            "Menelda",
+            "Oydelis",
+            "Renilda",
+            "Syardis",
+            "Syele",
+            "Theda",
+            "Valpaea",
+            "Vaunn"
+        ],
+
+        noms: [
+            "Altaner",
+            "Argland",
+            "Balich",
+            "Barthus",
+            "Brand",
+            "Cerfas",
+            "Denka",
+            "Dorn",
+            "Erdei",
+            "Eschus",
+            "Furnau",
+            "Gaebler",
+            "Gergus",
+            "Grogloth",
+            "Hellekanus",
+            "Hintram",
+            "Jaranus",
+            "Karlach",
+            "Kessler",
+            "Kraal",
+            "Lassinus",
+            "Losho",
+            "Maerer",
+            "Ochem",
+            "Rangoth",
+            "Roerith",
+            "Sattler",
+            "Senglin",
+            "Taggert",
+            "Thul",
+            "Trothut",
+            "Vanalan",
+            "Vedenin",
+            "Zecklin"
+        ]
+    },
+
+
+    thrane: {
+
+        masculin: [
+            "Alestair",
+            "Arrun",
+            "Andri",
+            "Calemi",
+            "Coref",
+            "Demodir",
+            "Drego",
+            "Drosin",
+            "Egen",
+            "Javi",
+            "Jeffin",
+            "Kaith",
+            "Lukar",
+            "Mizar",
+            "Ossul",
+            "Pentar",
+            "Rave",
+            "Sercyl",
+            "Sudro",
+            "Suthar",
+            "Syro",
+            "Taran",
+            "Tokorin",
+            "Urdan",
+            "Valtar",
+            "Vencyl",
+            "Verodin",
+            "Zoder"
+        ],
+
+        feminin: [
+            "Avaliah",
+            "Beref",
+            "Chantalyn",
+            "Draci",
+            "Ghanji",
+            "Hariel",
+            "Heken",
+            "Imperi",
+            "Irulan",
+            "Jahanah",
+            "Kahlia",
+            "Lycia",
+            "Maradal",
+            "Margil",
+            "Melindri",
+            "Morgana",
+            "Narvala",
+            "Norah",
+            "Nyllestra",
+            "Sede",
+            "Suspiria",
+            "Taris",
+            "Thradi",
+            "Varikah"
+        ],
+
+        noms: [
+            "Aeyliros",
+            "Askarda",
+            "Atrelioth",
+            "Corliostor",
+            "Corus",
+            "Desekane",
+            "Drosin",
+            "Entarro",
+            "Eskeliendro",
+            "Ghastor",
+            "Hetrion",
+            "Imaradi",
+            "Irvallo",
+            "Karavastar",
+            "Krayci",
+            "Lerendazi",
+            "Marktaros",
+            "Neskus",
+            "Ovion",
+            "Ravadanci",
+            "Sarhain",
+            "Talandro",
+            "Tarravan",
+            "Teskelyndros",
+            "Vanatar",
+            "Vasiraghi"
+        ]
+    }
+};
+
+
+/* ============================================================
+   ELFES
+   ============================================================ */
+
+const elfes = {
+
+    khorvaire: {
+
+        masculin: [
+            "Aesha",
+            "Daellin",
+            "Marrath",
+            "Tellian"
+        ],
+
+        feminin: [
+            "Innae",
+            "Paela",
+            "Phaeani",
+            "Sailla",
+            "X’ennia"
+        ],
+
+        noms: [
+            "Amastacia",
+            "Amakiir",
+            "Galanodel",
+            "Holimion",
+            "Liadon",
+            "Meliamne",
+            "Naïlo",
+            "Siannodel",
+            "Ilphukiir",
+            "Xiloscient"
+        ]
+    },
+
+
+    valenar: {
+
+        tous: [
+            "Aeraes",
+            "Dailian",
+            "Fianin",
+            "Kaelan",
+            "Lia",
+            "Niath",
+            "Shearan",
+            "Tairil",
+            "Thail",
+            "Vaelas",
+            "Vaelin",
+            "Xael"
+        ],
+
+        noms: [
+            "Amastacia",
+            "Amakiir",
+            "Galanodel",
+            "Holimion",
+            "Liadon",
+            "Meliamne",
+            "Naïlo",
+            "Siannodel",
+            "Ilphukiir",
+            "Xiloscient"
+        ]
+    }
+};
+
+
+/* ============================================================
+   DEMI-ELFES
+   ============================================================ */
+
+const demielfes = {
+
+    masculin: [
+        "Arimart",
+        "Enilam",
+        "Ivello",
+        "Sovelom",
+        "Tham",
+        "Thariv"
+    ],
+
+    feminin: [
+        "Drusila",
+        "Fellise",
+        "Ieleen",
+        "Mia",
+        "Silloene",
+        "Xanaph"
+    ],
+
+    noms: [
+        "Amastacia",
+        "Amakiir",
+        "Galanodel",
+        "Holimion",
+        "Liadon",
+        "Meliamne",
+        "Naïlo",
+        "Siannodel",
+        "Ilphukiir",
+        "Xiloscient"
+    ]
+};
+
+
+/* ============================================================
+   NAINS
+   ============================================================ */
+
+const nains = {
+
+    masculin: [
+        "Bruennen",
+        "Durnnam",
+        "Greddark",
+        "Kellark",
+        "Turanank"
+    ],
+
+    feminin: [
+        "Annaka",
+        "Gerthin",
+        "Karkanna",
+        "Menna",
+        "Zranakarak"
+    ],
+
+    clans: [
+        "Kolkarun",
+        "d’Kundarak",
+        "Mroranon",
+        "Narathun",
+        "Soldorak"
+    ]
+};
+
+
+/* ============================================================
+   DEMI-ORQUES
+   ============================================================ */
+
+const demiorques = {
+
+    masculin: [
+        "Bravejo",
+        "Devent",
+        "Fuddok",
+        "Kad",
+        "Timmok"
+    ],
+
+    feminin: [
+        "Anika",
+        "Bertha",
+        "Ket",
+        "Maia-Zak",
+        "Zarra"
+    ]
+};
+
+
+/* ============================================================
+   MAISONS DRACONIQUES
+   ============================================================ */
+
+const maisonsDraconiques = [
+
+    "Cannith",
+    "Deneith",
+    "Ghallanda",
+    "Jorasco",
+    "Kundarak",
+    "Lyrandar",
+    "Medani",
+    "Orien",
+    "Phiarlan",
+    "Sivis",
+    "Tharashk",
+    "Thuranni",
+    "Vadalis"
+
+];
+
+
+/* ============================================================
+   PROVENANCES
+   ============================================================ */
+
+function mettreAJourProvenances() {
+
+    const race =
+        document.getElementById("race").value;
+
+    const select =
+        document.getElementById("provenance");
+
+    const optionsHumain =
+        document.getElementById("optionsHumain");
+
+
+    select.innerHTML = "";
+
+
+    if (race === "humain") {
+
+        ajouterOption(
+            select,
+            "aundair",
+            "Aundair"
+        );
+
+        ajouterOption(
+            select,
+            "breland",
+            "Breland"
+        );
+
+        ajouterOption(
+            select,
+            "karrnath",
+            "Karrnath"
+        );
+
+        ajouterOption(
+            select,
+            "thrane",
+            "Thrane"
+        );
+
+        optionsHumain.style.display = "flex";
+    }
+
+
+    else if (race === "elfe") {
+
+        ajouterOption(
+            select,
+            "khorvaire",
+            "Khorvaire"
+        );
+
+        ajouterOption(
+            select,
+            "valenar",
+            "Valenar"
+        );
+
+        optionsHumain.style.display = "none";
+    }
+
+
+    else if (race === "demielfe") {
+
+        ajouterOption(
+            select,
+            "humain",
+            "Khorvaire / Five Nations"
+        );
+
+        optionsHumain.style.display = "none";
+    }
+
+
+    else if (race === "nain") {
+
+        ajouterOption(
+            select,
+            "mror",
+            "Mror Holds"
+        );
+
+        optionsHumain.style.display = "none";
+    }
+
+
+    else if (race === "demiorque") {
+
+        ajouterOption(
+            select,
+            "khorvaire",
+            "Khorvaire"
+        );
+
+        optionsHumain.style.display = "none";
+    }
+}
+
+
+function ajouterOption(
+    select,
+    valeur,
+    texte
+) {
+
+    const option =
+        document.createElement("option");
+
+    option.value = valeur;
+    option.textContent = texte;
+
+    select.appendChild(option);
+}
+
+
+/* ============================================================
+   GÉNÉRATION
+   ============================================================ */
+
+function aleatoire(tableau) {
+
+    return tableau[
+        Math.floor(
+            Math.random() * tableau.length
+        )
+    ];
+}
+
+
+function genererNom() {
+
+    const race =
+        document.getElementById("race").value;
+
+    const sexe =
+        document.getElementById("sexe").value;
+
+    const provenance =
+        document.getElementById("provenance").value;
+
+
+    let prenom = "";
+    let nom = "";
+    let description = "";
+
+
+    /* --------------------------------------------------------
+       HUMAIN
+       -------------------------------------------------------- */
+
+    if (race === "humain") {
+
+        const culture =
+            humains[provenance];
+
+        prenom =
+            aleatoire(culture[sexe]);
+
+        nom =
+            aleatoire(culture.noms);
+
+
+        /* Maison draconique */
+
+        if (
+            document.getElementById("maison").checked
+        ) {
+
+            nom =
+                "d’" +
+                aleatoire(maisonsDraconiques);
+
+            description =
+                "Humain " +
+                afficherCulture(provenance) +
+                " — maison draconique";
+        }
+
+
+        /* Noblesse */
+
+        else if (
+            document.getElementById("noble").checked
+        ) {
+
+            nom =
+                "ir’" +
+                nom;
+
+            description =
+                "Humain " +
+                afficherCulture(provenance) +
+                " — famille noble";
+        }
+
+
+        else {
+
+            description =
+                "Humain " +
+                afficherCulture(provenance);
+        }
+    }
+
+
+    /* --------------------------------------------------------
+       ELFE
+       -------------------------------------------------------- */
+
+    else if (race === "elfe") {
+
+        const culture =
+            elfes[provenance];
+
+
+        if (provenance === "valenar") {
+
+            prenom =
+                aleatoire(culture.tous);
+
+            description =
+                "Elfe valénar";
+        }
+
+
+        else {
+
+            prenom =
+                aleatoire(culture[sexe]);
+
+            description =
+                "Elfe de Khorvaire";
+        }
+
+
+        nom =
+            aleatoire(culture.noms);
+    }
+
+
+    /* --------------------------------------------------------
+       DEMI-ELFE
+       -------------------------------------------------------- */
+
+    else if (race === "demielfe") {
+
+        prenom =
+            aleatoire(
+                demielfes[sexe]
+            );
+
+        nom =
+            aleatoire(
+                demielfes.noms
+            );
+
+        description =
+            "Demi-elfe";
+    }
+
+
+    /* --------------------------------------------------------
+       NAIN
+       -------------------------------------------------------- */
+
+    else if (race === "nain") {
+
+        prenom =
+            aleatoire(
+                nains[sexe]
+            );
+
+        nom =
+            aleatoire(
+                nains.clans
+            );
+
+        description =
+            "Nain des Mror Holds";
+    }
+
+
+    /* --------------------------------------------------------
+       DEMI-ORQUE
+       -------------------------------------------------------- */
+
+    else if (race === "demiorque") {
+
+        prenom =
+            aleatoire(
+                demiorques[sexe]
+            );
+
+        description =
+            "Demi-orque";
+    }
+
+
+    /* --------------------------------------------------------
+       AFFICHAGE
+       -------------------------------------------------------- */
+
+    document.getElementById("nom").textContent =
+        prenom +
+        (nom ? " " + nom : "");
+
+
+    document.getElementById("details").textContent =
+        description;
+}
+
+
+/* ============================================================
+   NOM DES CULTURES
+   ============================================================ */
+
+function afficherCulture(culture) {
+
+    const noms = {
+
+        aundair:
+            "d’Aundair",
+
+        breland:
+            "du Breland",
+
+        karrnath:
+            "du Karrnath",
+
+        thrane:
+            "de Thrane"
+
+    };
+
+    return noms[culture] || culture;
+}
+
+
+/* ============================================================
+   COPIER
+   ============================================================ */
+
+function copierNom() {
+
+    const nom =
+        document.getElementById("nom").textContent;
+
+
+    if (nom === "—") {
+        return;
+    }
+
+
+    navigator.clipboard
+        .writeText(nom)
+        .then(() => {
+
+            const details =
+                document.getElementById("details");
+
+            const ancien =
+                details.textContent;
+
+
+            details.textContent =
+                "Nom copié !";
+
+
+            setTimeout(
+                () => {
+                    details.textContent =
+                        ancien;
+                },
+                1200
+            );
+
+        });
+
+}
+
+
+/* ============================================================
+   INITIALISATION
+   ============================================================ */
+
+document
+    .getElementById("race")
+    .addEventListener(
+        "change",
+        mettreAJourProvenances
+    );
+
+
+mettreAJourProvenances();
+
+genererNom();
+
+</script>
+
+</body>
+</html>
